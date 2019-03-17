@@ -1,0 +1,28 @@
+<html>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+
+  <h2>Tasks List</h2>
+
+  <table>
+    <tr>
+      <th>Created Date</th>
+      <th>Required by Date</th>
+      <th>Status</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Action <button class="btn" routerLink="/add-task/"><i class="fa fa-save"></i></button></th>
+    </tr>
+    <tr *ngFor="let task of tasks">
+      <td>{{task.createDate}}</td>
+      <td>{{task.requiredByDate}}</td>
+      <td>{{task.taskDetails.status.name}}</td>
+      <td>{{task.taskDetails.type.name}}</td>
+      <td>{{task.taskDetails.description}}</td>
+      <td><button class="btn" (click)="deleteTask(task.id)"><i class="fa fa-trash"></i></button> <button class="btn" routerLink="/task-view/{{task.id}}/{{task.taskDetails.type.id}}/{{task.taskDetails.status.id}}/{{task.createDate}}/{{task.requiredByDate}}"><i class="fa fa-edit"></i></button></td>
+    </tr>
+
+  </table>
+</body>
+
+</html>

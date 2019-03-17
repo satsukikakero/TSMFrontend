@@ -1,0 +1,52 @@
+<div>
+  <table>
+    <tr>
+      <td>
+        <label>Comment :
+        </label>
+      </td>
+      <td>
+        <label>Reminder date:
+        </label><br>
+      </td>
+      <td>
+        <label>Comment Type
+        </label>
+      </td>
+      <td>
+        <button (click)="add(comment.value, reminderdate.value, commenttype.value); comment.value=''">
+          add comment
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <textarea #comment></textarea>
+      </td>
+      <td>
+        <input #reminderdate type="date" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.requestbydate.errors }" />
+      </td>
+      <td>
+        <select #commenttype>
+          <option *ngFor="let commentType of commentTypes" [ngValue]="commentType.id">
+            {{ commentType.type }}
+          </option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<ul class="tasks">
+  <li *ngFor="let comment of comments">
+    
+    <a>
+      Creation Date: {{comment.dateAdded}} Reminder date: {{comment.reminderDate}} Type: {{comment.commentType.type}}
+      <textarea class="textarea" readonly>{{comment.commentText}}</textarea>
+      
+    </a>
+    
+    <button class="delete" title="delete comment" (click)="delete(comment.id)">x</button>
+  </li>
+</ul>

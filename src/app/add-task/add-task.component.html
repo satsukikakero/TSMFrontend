@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="addTask()">
+  <div class="center">
+    <h2>Add Task</h2>
+    <div class="form-group">
+      <label>Type:</label><br>
+        <select formControlName="typeid">
+          <option *ngFor="let taskType of taskTypes" [ngValue]="taskType.id"> 
+              {{ taskType.name }}
+          </option>
+      </select><br>
+      <label>Status:</label><br>
+      <select formControlName="statusid">
+        <option *ngFor="let taskStatus of taskStatuses" [ngValue]="taskStatus.id"> 
+            {{ taskStatus.name }}
+        </option>
+    </select><br>
+      <div *ngIf="submitted && f.requestbydate.errors" class="invalid-feedback">
+        <div *ngIf="f.requestbydate.errors.required">Creation date is required</div>
+      </div>
+      <label>Request by date:
+        <input type="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.requestbydate.errors }" formControlName="requestbydate"
+          placeholder="Request by date" />
+      </label><br>
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">Description is required</div>
+      </div>
+      <label>Description:
+        <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" formControlName="description"
+          placeholder="Description" />
+      </label><br>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Add</button>
+    </div>
+  </div>
+</form>
